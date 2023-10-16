@@ -7,13 +7,21 @@ git clone https://github.com/LexPrime/mina-mainnet-docker
 cd mina-mainnet-docker
 ```
 
-Copy folder with your keys inside this folder
+Create keys folder and copy your private and public keys inside
+
 ```
-chmod 700 ~/keys
-chmod 600 ~/keys/my-wallet
+mkdir keys
+chmod 700 keys
+chmod 600 keys/my-wallet
 ```
 
-Copy sample.env to .env and add your variables
+Start mina_keygen.sh for generate libp2p key
+
+```
+./mina_keygen.sh
+```
+
+Copy sample.env to .env and set your private keys password and server IP address
 
 ```
 cp sample.env .env

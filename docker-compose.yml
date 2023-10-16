@@ -10,16 +10,14 @@ x-logging:
 
 services:
   mina:
-    image: gcr.io/o1labs-192920/mina-daemon:${MINA_VERSION}
+    image: gcr.io/o1labs-192920/mina-daemon:${MINA_BP_VERSION}
     container_name: mina-bp
     environment:
-      MINA_PUBLIC_KEY: ${MINA_PUBLIC_KEY}
       MINA_PRIVKEY_PASS: ${MINA_PASS}
       UPTIME_PRIVKEY_PASS: ${MINA_PASS}
       MINA_LIBP2P_PASS: ${MINA_PASS}
       RAYON_NUM_THREADS: 6
-    command: |
-       daemon
+    command: daemon
        --log-json
        --log-snark-work-gossip true
        --internal-tracing
@@ -32,9 +30,9 @@ services:
        --itn-graphql-port 3089
        --uptime-submitter-key /keys/${WALLET_NAME}
        --uptime-url https://block-producers-uptime-itn.minaprotocol.tools/v1/submit
-       --metrics-port 10001 (**This flag is used when using Kubernetes. The port should be closed from external access**)
+       --metrics-port 10001
        --enable-peer-exchange true
-       --libp2p-keypair /keys/${WALLET_NAME}
+       --libp2p-keypair /keys/libkey
        --log-precomputed-blocks true
        --max-connections 200
        --peer-list-url https://storage.googleapis.com/seed-lists/testworld-2-0_seeds.txt
