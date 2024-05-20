@@ -12,12 +12,13 @@ services:
   mina:
     image: gcr.io/o1labs-192920/mina-daemon:${MINA_VERSION}
     container_name: mina
+    env_file: .env
     environment:
-      MINA_PUBLIC_KEY: ${MINA_PUBLIC_KEY}
       MINA_PRIVKEY_PASS: ${MINA_PASS}
       UPTIME_PRIVKEY_PASS: ${MINA_PASS}
       MINA_LIBP2P_PASS: ${MINA_PASS}
       RAYON_NUM_THREADS: 6
+    entrypoint: mina
     command: |
        daemon
        --log-json
@@ -25,7 +26,7 @@ services:
        --file-log-rotations 500
        --config-directory /root/.mina-config
        --external-ip ${IP}
-       --libp2p-keypair /keys/${WALLET_NAME}
+       --libp2p-keypair /keys/libkey
        --peer-list-url https://storage.googleapis.com/o1labs-gitops-infrastructure/devnet/seed-list-devnet.txt
        --generate-genesis-proof true
        --block-producer-key /keys/${WALLET_NAME}
