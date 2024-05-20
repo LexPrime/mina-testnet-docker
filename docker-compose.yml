@@ -1,5 +1,3 @@
-version: "3.9"
-
 x-logging:
   &logging
   logging:
@@ -12,7 +10,6 @@ services:
   mina:
     image: gcr.io/o1labs-192920/mina-daemon:${MINA_VERSION}
     container_name: mina
-    env_file: .env
     environment:
       MINA_PRIVKEY_PASS: ${MINA_PASS}
       UPTIME_PRIVKEY_PASS: ${MINA_PASS}

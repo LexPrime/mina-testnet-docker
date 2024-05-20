@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 source $(pwd)/.env
 
 if [ ! -d "keys" ]; then

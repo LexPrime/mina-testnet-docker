@@ -2,45 +2,44 @@ Testnet mina docker setup
 
 Quick start Mina block producer with docker-compose
 
+
+1. Clone this repo add enter it
 ```
 git clone https://github.com/LexPrime/mina-testnet-docker
-cd mina-mainnet-docker
+cd mina-testnet-docker
 ```
 
-Copy folder with your keys inside this folder
-```
-chmod 700 ~/keys
-chmod 600 ~/keys/my-wallet
-```
+2. Create your example of .env file and add your variables(wallet name and password for block producer key):
 
-Copy sample.env to .env and add your variables
+- set WALLET_NAME
+- set MINA_PASS
 
 ```
 cp sample.env .env
+nano .env
 ```
 
-On first start run init.sh for generating lib2p2 key
+3. On first start run init.sh for generating lib2p2 key(set the same password that you set in MINA_PASS)
 
 ```
 ./init.sh
 ```
 
-If you need fresh block producer key use keygen.sh and set wallet name
+4. If you need fresh block producer key start keygen.sh(set the same password that you set in MINA_PASS)
 
 ```
 ./keygen.sh
 ```
-
-If you have your block producer key then add it in keys folder
+If you want import your old block producer key add it in keys folder
 
 ```
+nano keys/my-wallet
 chmod 700 ~/keys
 chmod 600 ~/keys/my-wallet
 ```
 
-Use start.sh for start block producer daemon
+5. Run start.sh for start block producer daemon
 
 ```
 ./start.sh
 ```
-
